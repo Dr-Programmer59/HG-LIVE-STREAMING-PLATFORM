@@ -1,0 +1,9 @@
+{
+  "/(site)/page": "app/(site)/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/live-dashboard/page": "app/live-dashboard/page.js",
+  "/streams/page": "app/streams/page.js",
+  "/stream/[streamId]/page": "app/stream/[streamId]/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
+}

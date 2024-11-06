@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body
+{
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.container
+{
+  max-width: 70rem;
+}
+
+::-webkit-scrollbar
+ {
+    width: 2px;
+    height: 2px;
+  }
+
+  .super-chat-box::-webkit-scrollbar
+  {
+    height: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400;
+    border-radius: 2rem;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.section
+{
+    @apply py-4 px-1;
+}
+
+.main-heading
+{
+    @apply text-5xl text-black/90 relative font-poppins font-semibold;
+    font-weight: 700;
+    text-align: center;
+    /* padding-bottom: .4rem; */
+}
+
+.sub-heading
+{
+  @apply text-3xl text-black/90 text-left font-poppins;
+  font-weight: 500 !important;
+}
+
+.para 
+{
+  line-height: 1.3;
+  @apply text-black/60 text-lg my-3 text-left;
+  font-weight: 200;
+}
+
+/* .main-heading::before
+{
+    content: '';
+    @apply absolute bottom-0;
+    height: .3rem;
+    width: 12rem;
+    background: #FF7F0B;
+} */
+
+
+.stream-container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
+
+.video-box
+{
+    height: 20rem;
+    /* background: blue; */
+}
+
+.stream-container .main
+{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: yellow;
+    height: 41rem;
+}
+
+
+.swiper-button-prev:after,
+.swiper-button-next:after
+{
+  @apply !text-primary;
+}
+
+
+.message-container
+{
+  padding-top: 4.2rem;
+}
+
+.main-bg
+{
+  background: linear-gradient(to right,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+}
+.main-bg2
+{
+  background: linear-gradient(to right,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/2.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+}
+.main-bg3
+{
+  background: linear-gradient(to right,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/3.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+
+.connect-section
+{
+  position: relative;
+}
+
+.connect-section::before
+{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: white;
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+.connect-section::after
+{
+  content: '';
+  position: absolute;
+  bottom: -1%;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: white;
+  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+
+
+.swiper-button-next,
+.swiper-button-prev
+{
+  display: none !important;
+}
+
+
+footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact-form h3 {
+  text-align: center;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.contact-form textarea {
+  height: 100px;
+}
+
+.contact-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  @apply bg-primary;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+}
+
+
+.otp-input-root input
+{
+  @apply !outline-none !border-2 !border-primary !rounded-lg !bg-transparent !py-3 !px-2
+}
+
+.inputStyle {
+  width: 3rem !important;
+  height: 3rem;
+  margin: 0 1rem;
+  font-size: 2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.inputStyle::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.containerStyle
+{
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.card-bg
+{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+@media only screen and (max-width: 900px) {
+  .price-section
+  {
+    flex-wrap: wrap;
+  }
+}
