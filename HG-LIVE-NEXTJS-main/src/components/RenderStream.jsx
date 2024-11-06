@@ -14,8 +14,9 @@ const position = {
 
 const RenderStream = ({ otherStream, handleMainBox, className1, className2, play, volume,streamDetails, imageClass }) => {
     const streamVideoElementRef = useRef([]);
-
+   
     useEffect(() => {
+        console.log("somethisnadsad",otherStream)
         if(otherStream.length > 1 && streamVideoElementRef.current[0].main == true ){
             streamVideoElementRef.current.splice(0,1);
         }
@@ -127,6 +128,11 @@ const RenderStream = ({ otherStream, handleMainBox, className1, className2, play
     // }
 
     useEffect(() => {
+      console.log(otherStream)
+    
+    }, [])
+    
+    useEffect(() => {
         if(play == true){
             streamVideoElementRef.current.forEach((ref) => ref?.play());
         }else if(play == false){
@@ -136,12 +142,11 @@ const RenderStream = ({ otherStream, handleMainBox, className1, className2, play
 
     useEffect(() => {
         if(volume != undefined){
-            // console.log(volume,videoRef.current[0]?.volume)
-            console.log(volume)
+          
             streamVideoElementRef.current.forEach((ref) => ref.volume = volume);
        }
     },[volume])
-    console.log(imageClass)
+   
     return (
         <>
             {

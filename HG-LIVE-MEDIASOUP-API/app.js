@@ -22,7 +22,6 @@ database();
 
 import { Server } from "socket.io";
 import mediasoup from "mediasoup";
-import { connected } from "process";
 
 app.get("*", (req, res, next) => {
   const path = "/sfu/";

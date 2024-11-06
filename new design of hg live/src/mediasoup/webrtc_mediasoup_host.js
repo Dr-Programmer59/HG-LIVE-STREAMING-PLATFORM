@@ -19,6 +19,7 @@ export default class webrtcMediaSoup_client{
         this.callers=[]
         this.isProducer = false
         this.mystream=null
+        this.mystreamCopy=null
         this.isAdmin=isAdmin
         this.params = {
             // mediasoup params
@@ -97,7 +98,7 @@ export default class webrtcMediaSoup_client{
     streamSuccess(stream){
       console.log("succesffuly get the media")
       this.mystream=stream
-    
+      this.mystreamCopy=stream
       this.audioParams = { track: stream.getAudioTracks()[0], ...this.audioParams };
       this.videoParams = { track: stream.getVideoTracks()[0], ...this.videoParams };
     
@@ -129,7 +130,7 @@ export default class webrtcMediaSoup_client{
       }
       }
       
-    
+      
     // A device is an endpoint connecting to a Router on the
     // server side to send/recive media
     async createDevice  () {

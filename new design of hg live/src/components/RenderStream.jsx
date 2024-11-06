@@ -16,6 +16,7 @@ const RenderStream = ({ otherStream, handleMainBox, className1, className2, play
     const streamVideoElementRef = useRef([]);
 
     useEffect(() => {
+        console.log("other stream change ",otherStream)
         if(otherStream.length > 1 && streamVideoElementRef.current[0].main == true ){
             streamVideoElementRef.current.splice(0,1);
         }

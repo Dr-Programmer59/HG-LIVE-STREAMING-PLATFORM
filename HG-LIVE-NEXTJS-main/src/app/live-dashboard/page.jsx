@@ -667,7 +667,7 @@ const handleshareScreen=async ()=>{
                     <canvas ref={canvasRef}  class="hidden"/>
                      <video autoPlay ref={inputVideoRef} width={500} height={320}  class="hidden"/>
                      <video autoPlay ref={inputVideoRef2} width={500} height={320}  class="hidden"/>
-                        <RenderStream streamDetails={streamDetails} handleMainBox={handleMainBox} otherStream={otherStream} className1={'w-full h-[calc(100vh-7.72rem)] overflow-auto gap-4 stream-container'} className2={'w-full h-[calc(100vh-7.72rem)] relative'} />
+                        <RenderStream streamDetails={streamDetails} handleMainBox={handleMainBox} otherStream={otherStream} className1={'w-full h-[calc(100vh-7.72rem)] overflow-auto gap-4 stream-container'} className2={'w-full h-[calc(100vh-7.72rem)] relative'} imageClass={""}/>
                     </div>
 
                     <div className='flex justify-center items-center p-3 bg-gray-900 gap-2'>

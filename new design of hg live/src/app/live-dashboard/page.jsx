@@ -2,15 +2,10 @@
 import ConfirmBox from '@/components/ConfirmBox';
 import Messages from '@/components/Messages';
 import React, { useEffect, useState, useCallback, useRef } from 'react'
-import { FaCamera, FaRegEye, FaMicrophone, FaLaptop, FaUsers, FaThumbsUp, FaShare, FaThumbsDown } from 'react-icons/fa'
-import { IoMdClose, IoMdSend } from "react-icons/io";
-import ScrollToBottom from 'react-scroll-to-bottom';
-import { BsMagic ,BsFillMicMuteFill, BsMicMuteFill } from "react-icons/bs";
+
 import SuperChat from '@/components/SuperChat';
-import { RiCameraOffFill } from "react-icons/ri";
 
 import webrtcMediaSoup_client from '@/mediasoup/webrtc_mediasoup_host';
-import { IoIosCall } from "react-icons/io";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify'
@@ -70,7 +65,7 @@ export default function LiveStream({ searchParams }) {
     const [open, setOpen] = useState(false)
     const [message_confirm, setMessage_confirm] = useState('Someone wanted to be host')
     const [messages, setMessages] = useState([])
-    const [SuperChatmessages, setSuperChatMessages] = useState([])
+    const [SuperChatmessages, setSuperChatmessages] = useState([])
     const [message, setMessage] = useState('');
     const [callers, setCallers] = useState([]);
     const [callers_audio,setcallers_audio] = useState([]);
@@ -229,7 +224,7 @@ else{
         if (data.superchat) {
             console.log("go new message",data)
 
-            setSuperChatMessages((prev) => [...prev, { coins: data.coins, message: data.message }])
+            setSuperChatmessages((prev) => [...prev, { coins: data.coins, message: data.message }])
         }
         else {
             console.log("got message ", data.message)
@@ -263,7 +258,7 @@ else{
 
 
 
-    const handleNewProducer = useCallback(({ hostData, socketId, viewer }) => {
+    const handleNewProducer = ({ hostData, socketId, viewer }) => {
         if (viewer) {
             console.log("new caller", hostData[0]['producerId'])
             
@@ -292,7 +287,7 @@ else{
 
             }
         }
-    },[])
+    }
 
 
      // get strea details 
@@ -318,6 +313,7 @@ else{
 
     const handleHostDisconnected=({hostData})=>{
         if(hostData){
+            console.log("disconnected")
         delete webrtc_client.mainTracks[hostData.socketId]
         setTimeout(() => {
             setotherStream([webrtc_client.mystream]);
@@ -382,7 +378,7 @@ else{
 
     const   handleAccept = () => {
 
-       
+            console.log("before the screensharing ",otherStream)
             Object.keys(waitingHosts.current).forEach(key => {
                 waitingHosts.current[key].forEach(host=>{
                     setTimeout(() => {
@@ -574,19 +570,14 @@ const handleshareScreen=async ()=>{
                     </div>
                 </div>
                 <div className="flex-grow relative">
-                    <RenderStream
-                        streamDetails={streamDetails}
-                        handleMainBox={handleMainBox}
-                        otherStream={otherStream}
-                        className1="w-full h-full"
-                        className2="w-full h-full relative"
-                    />
+                <RenderStream streamDetails={streamDetails} handleMainBox={handleMainBox} otherStream={otherStream} className1={'w-full h-[calc(100vh-7.72rem)] overflow-auto gap-4 stream-container'} className2={'w-full h-[calc(100vh-7.72rem)] relative'} />
+
                 </div>
                 <div className="flex justify-center items-center p-4 bg-[#1A1D22] space-x-2 md:space-x-4">
                     <IconButton onClick={handleMicMute} icon={micMute ? MicOff : Mic} active={!micMute} tooltip={micMute ? 'Unmute' : 'Mute'} />
                     <IconButton onClick={handleCameraMute} icon={cameraMute ? VideoOff : Video} active={!cameraMute} tooltip={cameraMute ? 'Enable Camera' : 'Disable Camera'} />
                     <IconButton onClick={handleshareScreen} icon={Monitor} tooltip="Share Screen" />
-                    <IconButton onClick={handleFilterOpen} icon={Wand2} active={filterOpen} tooltip="Filters" />
+                    <IconButton onClick={handlerFilterOpen} icon={Wand2} active={filterOpen} tooltip="Filters" />
                     <IconButton onClick={handleCopy} icon={Share2} tooltip="Copy Stream Link" />
                     <IconButton onClick={() => setCallOpen(!callOpen)} icon={Phone} active={callOpen} tooltip="Incoming Calls" />
                     <Button onClick={handleStreamingStart} className="ml-2 md:ml-4">
@@ -600,7 +591,7 @@ const handleshareScreen=async ()=>{
                 </div>
                 <div className="flex-grow overflow-hidden">
                     <div id="chat-container" className="flex-grow overflow-y-auto p-4" style={{ maxHeight: 'calc(100vh - 200px)' }}>
-                        {superChatMessages.map((msg, i) => (
+                        {SuperChatmessages.map((msg, i) => (
                             <SuperChat key={i} avatar="/images/image-1.jpg" amount={msg.coins} message={msg.message} />
                         ))}
                         {messages.map((msg, i) => (
@@ -664,7 +655,7 @@ const handleshareScreen=async ()=>{
                     ))}
                 </div>
             )}
-            <ConfirmBox handleClick={handleAccept} message={confirmMessage} open={confirmOpen} />
+            <ConfirmBox handleClick={handleClick} message={message_confirm} open={open} />
             <canvas ref={canvasRef} className="hidden" />
             <video autoPlay ref={inputVideoRef} width={500} height={320} className="hidden" />
             <video autoPlay ref={inputVideoRef2} width={500} height={320} className="hidden" />
